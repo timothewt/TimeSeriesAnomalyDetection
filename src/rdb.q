@@ -1,0 +1,1 @@
+data:([]timestamp:`date$();temperature:0f;pressure:0f;power:0f)

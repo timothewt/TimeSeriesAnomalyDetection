@@ -1,0 +1,1 @@
+for %%f in (tickerplant feed) do start "%%f" run_scripts\%%f.bat

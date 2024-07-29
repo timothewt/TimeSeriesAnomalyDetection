@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 start_date = datetime(2022, 1, 1)
 n_timestamps = 2 * 365 * 24 * 60  # Number of minutes in a year (365 days * 24 hours * 60 minutes)
-freq = '1min'  # 10-minute intervals
+freq = '1min'  # 1-minute intervals
 
 date_rng = pd.date_range(start=start_date, periods=n_timestamps, freq=freq)
 df = pd.DataFrame(date_rng, columns=['timestamp'])
