@@ -11,7 +11,7 @@ Called at each new data to perform anomaly detection
 
 / Logs
 anomalies: ([]timestamp:();temperature:();pressure:();power:())
-log_file_path: `:logs/logs_anomalies.csv
+log_file_path: `:../logs/anomalies.csv
 
 / Python imports
 is_anomaly:.p.import[`anomaly_detector]`:is_anomaly
