@@ -4,7 +4,7 @@ import torch
 from LSTMNet import LSTMNet, LSTMExtractor
 
 
-def _is_anomaly(data, model, anomaly_thresholds, means, stds):
+def _is_anomaly(data: dict, model, anomaly_thresholds, means, stds):
 	"""
 
 	:param data: Un-normalized data
@@ -14,20 +14,20 @@ def _is_anomaly(data, model, anomaly_thresholds, means, stds):
 	:param stds: Standard deviations of the dataset for normalization
 	:return: True if an anomaly is detected, False otherwise
 	"""
-	data = np.array(data)
-	if data.shape != (16, 3):
-		print("Data shape must be (15, 3)")
+	data = np.array([data[key] for key in data.keys()]).transpose(1, 0)
+	if (shape := data.shape) != (16, 3):
+		print(f"Data shape must be (16, 3). Got {shape} instead.")
 		return False
 	data = (data - means) / stds
 	with torch.no_grad():
 		output = model(torch.from_numpy(data[:-1]).reshape(1, 15, 3).float())[0]
-		return ((data[-1] - output.numpy()).abs() > anomaly_thresholds).any()
+		return (np.abs(data[-1] - output.numpy()) > anomaly_thresholds).any()
 
 
 model = LSTMNet(3, 3)
-model.load_state_dict(torch.load('../../models/forecasting_lstm_model.pt'))
-anomaly_thresholds = np.load('../../models/thresholds.npy')
-means, stds = np.load('../../data/means.npy'), np.load('../../data/stds.npy')
+model.load_state_dict(torch.load('../models/forecasting_lstm_model.pt'))
+anomaly_thresholds = np.load('../models/thresholds.npy')
+means, stds = np.load('../data/means.npy'), np.load('../data/stds.npy')
 
 
 def is_anomaly(data):
