@@ -21,10 +21,7 @@ to achieve efficient data processing and anomaly identification in a streaming e
 ### Usage
 
 1. **Install Dependencies:** Ensure q/KDB+ and Python libraries (NumPy, Pandas, Matplotlib, PyTorch, EmbedPy) are installed.
-2. **Prepare Data:**
-    * Data is expected in a specific CSV format.
-    * Pre-compute normalization parameters and train the forecasting model using provided scripts or alternative methods.
-3. **Run the System:**
-    * Execute `src/run.bat` to start the data feed, tickerplant, database, and anomaly detection scripts sequentially.
+2. **Run the System:**
+    * Execute `src/run.bat` to sequentially start the data feed, tickerplant, database, and anomaly detection scripts.
 
 This README provides a comprehensive overview. Refer to the individual scripts for detailed implementation specifics.
